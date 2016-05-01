@@ -16,18 +16,21 @@
         const BUTTON_OK_CANCEL  = ['OK', 'Cancel'];
         
         this.alert = (title, msg, options) => {
-            return showDialog(title, msg, '', BUTTON_OK, options);
+            return showDialog(title, msg, '', options.buttonOk ?
+              options.buttonOk : BUTTON_OK, options);
         };
         
         this.prompt = (title, msg, value, options) => {
             let val         = value || '';
             let valueStr    = `<input type="text" value="${ val }" data-name="js-input">`;
             
-            return showDialog(title, msg, valueStr, BUTTON_OK_CANCEL, options);
-        };
+            return showDialog(title, msg, valueStr, options.buttonOkCancel ?
+              options.buttonOkCancel : BUTTON_OK_CANCEL, options);
+         };
         
         this.confirm = (title, msg, options) => {
-            return showDialog(title, msg, '', BUTTON_OK_CANCEL, options);
+            return showDialog(title, msg, '', options.buttonOkCancel ?
+              options.buttonOkCancel : BUTTON_OK_CANCEL, options);
         };
         
         function getTemplate(title, msg, value, buttons) {
